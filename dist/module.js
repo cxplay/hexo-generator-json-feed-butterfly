@@ -36,7 +36,7 @@ const specs = {
         id: post.permalink,
         url: post.permalink,
         title: post.title,
-        content_html: post.content,
+        content_html: prune(post.content),
         content_text: minify(post.content),
         summary: summary(post),
         date_published: post.date.toDate().toJSON(),
@@ -63,6 +63,18 @@ const specs = {
 
 function minify (str) {
   return stripHTML(str).trim().replace(/\s+/g, ' ')
+}
+
+function prune(str) {
+  return str
+  .replace(/<td class="gutter"><pre>(?:<span class="line">[0-9]+<\/span><br>)+<\/pre><\/td>/g, '') // Prune line numbers
+  .replace(/<span class="line">(.*?)<\/span><br>/g, '$1\n') // Prune code span tag
+  .replace(/<span class=".*?">(.*?)<\/span>/g, '$1') // Prune code span tag
+  .replace(/<figure class="highlight (.*?)"><table><tr><td class="code"><pre>(.*?)<\/pre><\/td><\/tr><\/table><\/figure>/gs, '<pre class="language-$1"><code>$2<\/code><\/pre>') // Refactoring code blocks
+  .replace(/<img src= ".*?" data-lazy-src="(.*?)" alt="(.*?)">/g, '<img src="$1" alt="$2" title="$2">') // Prune lazyload img
+  .replace(/<span class=".*?">(.*?)<\/span>/g, '$1') // Prune code span tag
+  .replace(/\sclass="fas\s.*?"/g, '') // Prune class
+  .replace(/\sclass="note\s.*?"/g, ''); // Prune class
 }
 
 function posts (site, limit) {
