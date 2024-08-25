@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-json-feed-butterfly",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JSON Feed/RSS generator for Hexo",
   "scripts": {
     "clean": "shx rm -rf dist",
