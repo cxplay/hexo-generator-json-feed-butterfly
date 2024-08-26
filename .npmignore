@@ -83,3 +83,6 @@ typings/
 
 # Test directory
 test
+
+# lockfile
+pnpm-lock.yaml
