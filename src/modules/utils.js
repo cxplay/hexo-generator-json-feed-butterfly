@@ -46,7 +46,8 @@ export const specs = {
 
     const json = {
       version: 'https://jsonfeed.org/version/1',
-      name: config.title,
+      title: config.title,
+      favicon: `${config.url}/favicon.ico`,
       home_page_url: config.url,
       feed_url: `${config.url}/feed.json`,
       author: {
