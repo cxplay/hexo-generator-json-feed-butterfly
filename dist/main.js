@@ -52,6 +52,10 @@ const specs = {
       favicon: `${config.url}/favicon.ico`,
       home_page_url: config.url,
       feed_url: `${config.url}/feed.json`,
+      follow_challenge: {
+        "feed_id": '67455911637200896',
+        "user_id": '57722825552178176'
+      },
       author: {
         name: config.author,
       },
